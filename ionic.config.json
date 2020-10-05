@@ -1,5 +1,7 @@
 {
   "name": "sardarabad",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

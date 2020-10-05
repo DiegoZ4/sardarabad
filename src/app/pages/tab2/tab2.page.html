@@ -1,0 +1,41 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  
+  <div class="toros"></div>
+  <ion-toolbar>
+    <ion-title>
+      <ion-img class="logo" src="/assets/logo.jpg"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+
+  <div class="submenu2"></div>
+  <!-- <div class="submenu">
+    PREMIO MEJOR MEDIO DE PRENSA PUBLICADO EN LENGUA EXTRANJERA - MINISTERIO DE LA DIASPORA DE ARMENIA 2015
+  </div> -->
+  
+</ion-header>
+
+<ion-content>
+
+  <ion-segment  scrollable 
+                mode="md" 
+                color="primary"
+                (ionChange)="cambioCategoria( $event )">
+
+    <ion-segment-button mode="md"
+                        *ngFor="let seccion of secciones"
+                        [value]="seccion.id">
+      <ion-label text-capitalize> {{ seccion.nombre }}</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+  <app-noticias [noticias]="noticias"></app-noticias>
+
+  <ion-infinite-scroll threshold="30px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

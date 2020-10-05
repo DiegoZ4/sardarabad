@@ -1,0 +1,25 @@
+<ion-card color="dark" class="animated fast fadeIn"
+          *ngIf="noticia.tipo == 'nota'">
+        
+  <ion-card-header>
+    <ion-card-subtitle>
+      <!-- <span class="textPrimary">{{ i + 1 }}. {{ enFavs }}</span> -->
+      <span class="comic-pages">{{ noticia.Categoria.nombre }}</span>
+
+      <div class="noticia-more">
+        <ion-button fill="clear" (click)="lanzarMnu()">
+          <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-subtitle>
+    <ion-card-title (click)="abrirNoticia()">{{ noticia.nombre }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-img  class="animated fast fadeIn"
+            (click)="abrirNoticia()" [src]="'https://sardarabad.com.ar'+noticia.imageThumbnailUrl"></ion-img>
+
+  <ion-card-content>
+    <p [innerHTML]="noticia.bajada"></p>
+  </ion-card-content>
+
+</ion-card>

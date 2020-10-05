@@ -1,0 +1,30 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  
+  <div class="toros"></div>
+  <ion-toolbar>
+    <ion-title>
+      <ion-img class="logo" src="/assets/logo.jpg"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+
+  <div class="submenu2"></div>
+  <!-- <div class="submenu">
+    PREMIO MEJOR MEDIO DE PRENSA PUBLICADO EN LENGUA EXTRANJERA - MINISTERIO DE LA DIASPORA DE ARMENIA 2015
+  </div> -->
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-slides [options]="sliderOpts"
+              *ngIf="dataLocal.noticias.length === 0">
+    <ion-slide>
+      <ion-label>No hay Favoritos</ion-label>
+    </ion-slide>
+  </ion-slides>
+
+  <app-noticias *ngIf="dataLocal.noticias.length > 0"
+                [enFavs]="true"
+                [noticias]="dataLocal.noticias"></app-noticias>
+
+</ion-content>

@@ -1,0 +1,17 @@
+ion-segment-button {
+    background-color: var( --ion-color-dark ) !important;
+    color: white !important;
+}
+ 
+.segment-button-checked {
+    color: var( --ion-color-primary ) !important;
+}
+
+.title {
+    margin: 25px auto 10px;
+    font-weight: 800;
+}
+
+.list{
+    background: none !important;
+}
