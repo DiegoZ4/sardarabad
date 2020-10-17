@@ -4,8 +4,8 @@
   <ion-card-header>
     <ion-card-subtitle>
       <!-- <span class="textPrimary">{{ i + 1 }}. {{ enFavs }}</span> -->
-      <span class="comic-pages">{{ noticia.Categoria.nombre }}</span>
-
+      <span class="comic-pages" *ngIf="noticia.Categoria">{{ noticia.Categoria.nombre }} - </span>
+      <span class="textPrimary"> {{ noticia.volanta }}</span>
       <div class="noticia-more">
         <ion-button fill="clear" (click)="lanzarMnu()">
           <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>

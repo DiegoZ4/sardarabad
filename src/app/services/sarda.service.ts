@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class SardaService {
 
 
-  URL_API = `https://sardarabad.com.ar/api/end-points/mobile`;
+  URL_API = `https://www.sardarabad.com.ar/api/end-points/mobile`;
 
 
   headers = new HttpHeaders({
