@@ -60,4 +60,9 @@ export class SardaService {
       );
 
   }
+
+  getNoticiasIdioma( lng ){
+
+    return this.http.get<Datum>(`${this.URL_API}/notas/idioma/${ lng }`, { headers: this.headers });
+  }
 }

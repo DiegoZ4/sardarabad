@@ -5,6 +5,9 @@
     <ion-title>
       <ion-img class="logo" src="/assets/logo.jpg"></ion-img>
     </ion-title>
+    <!-- <ion-button color="light"  (click)="loadData()" slot="end">
+      <ion-icon name="refresh"></ion-icon>
+    </ion-button> -->
   </ion-toolbar>
 
   <div class="submenu2"></div>  
@@ -15,6 +18,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="light" expand="full" (click)="loadData()">
+          <ion-icon name="reload"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button color="light" expand="full" (click)="loadIdiomas('ingles')">Inglés</ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button color="light" expand="full" (click)="loadIdiomas('armenio')">Armenio</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   
   <app-noticias [noticias]="noticias"></app-noticias>
 

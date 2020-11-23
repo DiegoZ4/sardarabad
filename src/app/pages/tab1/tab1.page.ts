@@ -17,12 +17,35 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(){
 
+    this.loadData();
+  }
+
+  doRefresh(e) {
+    console.log(e);
+
+    this.loadData(e);
+
+  }
+
+  loadData(e?) {
     this.sardaService.getNoticias()
         .subscribe( (resp: any) => {
 
           console.log(resp);
-          this.noticias.push( ...resp.data );
+          this.noticias = resp.data;
+          console.log(this.noticias);
+          if ( e ) {
+            e.target.complete();
+          }
 
+        });
+  }
+
+  loadIdiomas( lng ) {
+    this.sardaService.getNoticiasIdioma( lng )
+        .subscribe( (resp: any) => {
+          this.noticias = resp.data;
+          console.log( resp.data );
         });
   }
 

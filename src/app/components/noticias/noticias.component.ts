@@ -13,6 +13,8 @@ export class NoticiasComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.noticias);
+  }
 
 }
