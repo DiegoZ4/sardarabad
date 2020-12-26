@@ -1,38 +1,48 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SardaService } from '../../services/sarda.service';
 import { Datum } from '../../interfaces/interfaces';
-
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ActionSheetController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { DataLocalService } from '../../services/data-local.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-noticia',
-  templateUrl: './noticia.component.html',
-  styleUrls: ['./noticia.component.scss'],
+  selector: 'app-nota',
+  templateUrl: './nota.page.html',
+  styleUrls: ['./nota.page.scss'],
 })
-export class NoticiaComponent implements OnInit {
+export class NotaPage implements OnInit {
 
-  @Input() noticia: Datum;
-  @Input() i: number;
-  @Input() enFavs = false;
+  id: any;
+  nota = {} as Datum;
+  enFavs = false;
+  cuerpo: any;
 
   constructor(
-    private iab: InAppBrowser,
+    private router: ActivatedRoute,
+    private sarda: SardaService,
     private actionSheetCtrl: ActionSheetController,
     private socialSharing: SocialSharing,
     private dataLocal: DataLocalService,
-    private router: Router
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
 
-  abrirNoticia() {
-    console.log(this.noticia.link);
-    console.log(this.noticia.id);
-    // const browser = this.iab.create('http://beta.sardarabad.com.ar' + this.noticia.link, '_system');
-    this.router.navigate(['/nota', this.noticia.id ]);
+    this.router.params.subscribe( (resp: any) => {
+      console.log(resp);
+      this.id = parseInt( resp.id, 10  );
+      console.log( this.id );
+
+      this.sarda.getNoticia ( this.id )
+          .subscribe ( (resp: any)=> {
+            console.log(resp)
+            this.nota = resp.data;
+
+            resp.data.cuerpo ? this.cuerpo = resp.data.cuerpo : null;
+            this.cuerpo.replace('../../../../', 'http://www.sardarabad.com/')
+          })
+      
+    });
   }
 
   async lanzarMnu() {
@@ -46,7 +56,7 @@ export class NoticiaComponent implements OnInit {
         icon: 'trash',
         handler: () => {
           console.log('Borrar Favoritos');
-          this.dataLocal.borrarNoticia( this.noticia );
+          this.dataLocal.borrarNoticia( this.nota );
         }
       };
 
@@ -57,7 +67,7 @@ export class NoticiaComponent implements OnInit {
         icon: 'star',
         handler: () => {
           console.log('Favoritos');
-          this.dataLocal.guardarNoticia( this.noticia );
+          this.dataLocal.guardarNoticia( this.nota );
         }
       };
 
@@ -72,10 +82,10 @@ export class NoticiaComponent implements OnInit {
         handler: () => {
           console.log('Share clicked');
           this.socialSharing.share(
-            this.noticia.nombre,
-            this.noticia.Categoria.nombre,
+            this.nota.nombre,
+            this.nota.Categoria.nombre,
             '',
-            'http://sardarabad.com.ar' + this.noticia.link
+            'http://sardarabad.com.ar' + this.nota.link
           );
         }
       },

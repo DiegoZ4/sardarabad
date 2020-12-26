@@ -110,3 +110,16 @@
   background-size: cover;
   background-position: center -10px;
 }
+
+.cuerpo p, .cuerpo span, .cuerpo div {
+  margin-bottom: 18px !important;
+  font-size: 18px !important;
+}
+
+.cuerpo aside {
+  display: none;
+}
+
+.cuerpo img {
+  height: auto !important;
+}

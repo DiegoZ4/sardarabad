@@ -1,0 +1,50 @@
+<ion-header class="ion-no-border">
+  
+  <div class="toros"></div>
+  <ion-toolbar>
+    <ion-title routerLink="/">
+      <ion-img class="logo" src="/assets/logo.jpg"></ion-img>
+    </ion-title>
+    <!-- <ion-button color="light"  (click)="loadData()" slot="end">
+      <ion-icon name="refresh"></ion-icon>
+    </ion-button> -->
+  </ion-toolbar>
+
+  <div class="submenu2"></div>  
+  <!-- <div class="submenu">
+    PREMIO MEJOR MEDIO DE PRENSA PUBLICADO EN LENGUA EXTRANJERA - MINISTERIO DE LA DIASPORA DE ARMENIA 2015
+  </div> -->
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card color="dark" class="animated fast fadeIn">
+        
+    <ion-card-header>
+      <ion-card-subtitle>
+        <!-- <span class="textPrimary">{{ i + 1 }}. {{ enFavs }}</span> -->
+        <span class="comic-pages" *ngIf="nota.Categoria">{{ nota.Categoria.nombre }} - </span>
+        <span class="textPrimary"> {{ nota.volanta }}</span>
+        <div class="noticia-more">
+          <ion-button fill="clear" (click)="lanzarMnu()">
+            <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-subtitle>
+      <ion-card-title>{{ nota.nombre }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-img  class="animated fast fadeIn"
+              [src]="'https://sardarabad.com.ar'+nota.imageThumbnailUrl"></ion-img>
+
+    <ion-card-content>
+      <p [innerHTML]="nota.bajada"></p>
+
+      <div class="separador"></div>
+
+      <div class="cuerpo" [innerHTML]="cuerpo"></div>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

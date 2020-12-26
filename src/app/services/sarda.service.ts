@@ -34,12 +34,19 @@ export class SardaService {
     return this.http.get<Datum>(`${this.URL_API}/tapa`, { headers: this.headers });
   }
 
+  getNoticia( id ){
+
+    return this.http.get<Datum>(`${this.URL_API}/notas/${id}`, { headers: this.headers });
+  }
+
   getSecciones(){
     return this.http.get<Datum>(`${this.URL_API}/categorias`, { headers: this.headers });
   }
 
   getNoticiasCategorias( id: string){
-
+    console.log('Categoria Actual', this.categoriaActual);
+    console.log('Id', id);
+    
     if ( this.categoriaActual === id) {
       this.categoriaPage++;
     }else{
@@ -47,7 +54,7 @@ export class SardaService {
       this.categoriaActual = id;
     }
 
-    return this.http.get(`${this.URL_API}/notas/categoria/${id}&page=${ this.categoriaPage }`, { headers: this.headers }).pipe(
+    return this.http.get(`${this.URL_API}/notas/categoria/${id}?page=${ this.categoriaPage }`, { headers: this.headers }).pipe(
         map( (resp: any) => {
           // return resp;
           console.log(resp);
