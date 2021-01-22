@@ -1,7 +1,10 @@
 <ion-header class="ion-no-border">
   
-  <div class="toros"></div>
+  <!-- <div class="toros"></div> -->
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
     <ion-title routerLink="/">
       <ion-img class="logo" src="/assets/logo.jpg"></ion-img>
     </ion-title>
@@ -10,7 +13,7 @@
     </ion-button> -->
   </ion-toolbar>
 
-  <div class="submenu2"></div>  
+  <div class="submenu2"></div>
   <!-- <div class="submenu">
     PREMIO MEJOR MEDIO DE PRENSA PUBLICADO EN LENGUA EXTRANJERA - MINISTERIO DE LA DIASPORA DE ARMENIA 2015
   </div> -->
@@ -33,9 +36,15 @@
       </ion-card-subtitle>
       <ion-card-title>{{ nota.nombre }}</ion-card-title>
     </ion-card-header>
+    
 
     <ion-img  class="animated fast fadeIn"
               [src]="'https://sardarabad.com.ar'+nota.imageThumbnailUrl"></ion-img>
+    
+    
+    <div class="videoTitulo">Videos relacionados</div>
+    <iframe *ngIf="video" class="videoNota" [src]="video" frameborder="0"></iframe>
+    <!-- {{ video }} -->
 
     <ion-card-content>
       <p [innerHTML]="nota.bajada"></p>

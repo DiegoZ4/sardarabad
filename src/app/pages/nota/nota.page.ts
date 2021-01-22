@@ -5,6 +5,7 @@ import { Datum } from '../../interfaces/interfaces';
 import { ActionSheetController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { DataLocalService } from '../../services/data-local.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-nota',
@@ -17,6 +18,8 @@ export class NotaPage implements OnInit {
   nota = {} as Datum;
   enFavs = false;
   cuerpo: any;
+  video: any;
+  
 
   constructor(
     private router: ActivatedRoute,
@@ -24,6 +27,7 @@ export class NotaPage implements OnInit {
     private actionSheetCtrl: ActionSheetController,
     private socialSharing: SocialSharing,
     private dataLocal: DataLocalService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -37,6 +41,11 @@ export class NotaPage implements OnInit {
           .subscribe ( (resp: any)=> {
             console.log(resp)
             this.nota = resp.data;
+            if ( this.nota.video ) {
+              this.video = this.sanitizer.bypassSecurityTrustResourceUrl(
+                this.nota.video
+              );
+            }
 
             resp.data.cuerpo ? this.cuerpo = resp.data.cuerpo : null;
             this.cuerpo.replace('../../../../', 'http://www.sardarabad.com/')

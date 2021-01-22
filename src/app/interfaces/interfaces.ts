@@ -52,6 +52,7 @@ export interface Datum {
     notasRelacionadasInline?:  null;
     url?:                      null;
     original?:                 null;
+    video?:                    null;
     videosRelacionados?:       null;
     audiosRelacionados?:       null;
     notasRelacionadas?:        null;
