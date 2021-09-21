@@ -49,6 +49,7 @@ export class NotaPage implements OnInit {
 
             resp.data.cuerpo ? this.cuerpo = resp.data.cuerpo : null;
             this.cuerpo.replace('../../../../', 'http://www.sardarabad.com/')
+            this.cuerpo = this.sanitizer.bypassSecurityTrustHtml(this.cuerpo);
           })
       
     });
