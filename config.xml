@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tecland.sardarabad" version="1.6.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tecland.sardarabad" version="1.7.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Sardarabad</name>
     <description>Aplicación del diario digital.</description>
     <author email="viene_el_gol@hotmail.com" href="http://ionicframework.com/">Diego Jesús Zaragoza - Tecland</author>
